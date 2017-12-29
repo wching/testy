@@ -13,22 +13,26 @@ jobs:
 
     steps:
       - run:
-        name: Lists installed targets
-        command: android list target
-        environment:
-          TERM: dumb
+          name: Lists installed targets
+            command: android list target
+              environment:
+                TERM: dumb
+
+      - run:
+          name: Approve license for build tools
+            command: (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
 
       - run:
         name: List available targets and other sdk modules
-        command: sdkmanager --list --include_obsolete --verbose
-        environment:
-          TERM: dumb
+          command: sdkmanager --list --include_obsolete --verbose
+            environment:
+              TERM: dumb
 
       - checkout
 
       # run tests!
       - run:
         name: Unit testing
-        command: ./gradlew test
-        environment:
-          TERM: dumb
+          command: ./gradlew test
+            environment:
+              TERM: dumb
