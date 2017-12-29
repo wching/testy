@@ -12,23 +12,23 @@ jobs:
       GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
 
     steps:
+      - run:
+        name: Lists installed targets
+        command: android list target
+        environment:
+          TERM: dumb
+
+      - run:
+        name: List available targets and other sdk modules
+        command: sdkmanager --list --include_obsolete --verbose
+        environment:
+          TERM: dumb
+
       - checkout
-      post:
-          - cp -r licenses/. $ANDROID_HOME/licenses
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "build.gradle" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run: gradle dependencies
-
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
 
       # run tests!
-      - run: gradle test
+      - run:
+        name: Unit testing
+        command: ./gradlew test
+        environment:
+          TERM: dumb
