@@ -11,10 +11,21 @@ env:
     - ADB_INSTALL_TIMEOUT=20 # minutes (2 minutes by default)
     - QEMU_AUDIO_DRV=none # Remove audio
 
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+
 android:
   components:
     - tools
     - platform-tools
+    # tools section appears twice on purpose as it’s required to get the newest Android SDK tools.
+    - tools
     - build-tools-$ANDROID_BUILD_TOOLS_VERSION
     - android-$ANDROID_API_LEVEL
     - android-$ANDROID_EMU_API_LEVEL
