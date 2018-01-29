@@ -5,7 +5,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import com.wz.calendarlib.adapter.DayAdapter
-import java.util.*
+import java.util.Calendar
 
 internal class MonthView @JvmOverloads constructor(
         context: Context,

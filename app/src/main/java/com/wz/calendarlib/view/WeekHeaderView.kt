@@ -7,7 +7,7 @@ import android.widget.LinearLayout
 import com.wz.calendarlib.R
 import kotlinx.android.synthetic.main.item_week.view.*
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
 
 internal class WeekHeaderView @JvmOverloads constructor(
         context: Context,

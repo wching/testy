@@ -10,7 +10,8 @@ import com.wz.calendarlib.R
 import com.wz.calendarlib.extension.inflate
 import com.wz.calendarlib.view.MonthView
 import kotlinx.android.synthetic.main.item_month.view.*
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 internal class CalendarAdapter(startDate: Date = Calendar.getInstance().time, numberOfMonths: Int = 12)
     : RecyclerView.Adapter<CalendarAdapter.MonthViewHolder>() {
@@ -24,8 +25,7 @@ internal class CalendarAdapter(startDate: Date = Calendar.getInstance().time, nu
     override fun onBindViewHolder(holder: MonthViewHolder?, position: Int) =
             (holder as MonthViewHolder).bind(months[position])
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
-            = MonthViewHolder(parent.inflate(R.layout.item_month))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MonthViewHolder(parent.inflate(R.layout.item_month))
 
     override fun getItemCount() = months.size
 
